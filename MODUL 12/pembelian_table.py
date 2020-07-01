@@ -27,7 +27,7 @@ class Pembelian:
         
         title.grid(row=0, columnspan=4, pady=10)
         l_id_penumpang.grid(row=1, column=0, sticky=W, padx=3)
-        l_id_buku.grid(row=2, column=0, sticky=W, padx=3)
+        l_id_tiket.grid(row=2, column=0, sticky=W, padx=3)
         l_berangkat.grid(row=3, column=0, sticky=W, padx=3)
         l_sampai.grid(row=4, column=0, sticky=W, padx=3)
         
@@ -71,12 +71,13 @@ class Pembelian:
         messagebox.showinfo("","Update Data Berhasil")
 
     def show_pembelian(self):
-        pembelian = Tk()
-        pembelian.title("Alur Pembelian Tiket")
-        Label(pembelian, text="ID Penumpang").grid(row=0, column=0, sticky=W)
-        Label(pembelian, text="ID Tiket").grid(row=0, column=1, sticky=W)
-        Label(pembelian, text="Tanggal Berangkat").grid(row=0, column=2, sticky=W)
-        Label(pembelian, text="Tanggal Sampai").grid(row=0, column=3, sticky=W)
+        c = db.cursor()
+        show = Tk()
+        show.title("Alur Pembelian Tiket")
+        Label(show, text="ID Penumpang").grid(row=0, column=0, sticky=W)
+        Label(show, text="ID Tiket").grid(row=0, column=1, sticky=W)
+        Label(show, text="Tanggal Berangkat").grid(row=0, column=2, sticky=W)
+        Label(show, text="Tanggal Sampai").grid(row=0, column=3, sticky=W)
         
         
         sql="select*from pembelian"
@@ -85,7 +86,7 @@ class Pembelian:
 
         for i in range(len(pembelian)):
             for j in range(len(pembelian[i])):
-                teks=Entry(pembelian)
+                teks=Entry(show)
                 teks.grid(row=i+1,column=j)
                 teks.insert(END,pembelian[i][j])
     
