@@ -53,7 +53,7 @@ class Penumpang:
         b_show.grid(row=7, column=1, pady=10, ipadx=10)
         
     def insert_penumpang(self):
-        c = db.cursor()
+        c= db.cursor()
         sql =f"INSERT INTO penumpang (`id_penumpang`,`nama`,`alamat`, `email`)VALUES('{self.e_id.get()}','{self.e_nama.get()}','{self.e_alamat.get()}', '{self.e_email.get()}')"         
         c.execute(sql)
         db.commit()
@@ -72,6 +72,7 @@ class Penumpang:
         messagebox.showinfo("","Update Data Berhasil")
 
     def show_penumpang(self):
+        c = db.cursor()
         show = Tk()
         show.title("Data Penumpang")
         Label(show, text="ID Penumpang").grid(row=0, column=0, sticky=W)
@@ -83,14 +84,14 @@ class Penumpang:
         
         sql="select*from penumpang"
         c.execute(sql)
-        Penumpang = c.fetchall()
+        penumpang = c.fetchall()
 
         for i in range(len(penumpang)):
-            for j in range(len(Penumpang[i])):
+            for j in range(len(penumpang[i])):
                 teks=Entry(show)
                 teks.grid(row=i+1,column=j)
-                teks.insert(END,Penumpang[i][j])
+                teks.insert(END,penumpang[i][j])
 
     def delete_penumpang(self):
         self.delete_penumpang=Toplevel(self.master)
-        self.UI=delete_member(self.delete_penumpang)
+        self.UI=delete_penumpang(self.delete_penumpang)
