@@ -88,6 +88,7 @@ class Tiket:
         messagebox.showinfo("","Update Data Berhasil")
 
     def show_tiket(self):
+        c = db.cursor()
         show = Tk()
         show.title("Data Tiket")
         Label(show, text="ID Tiket").grid(row=0, column=0, sticky=W)
